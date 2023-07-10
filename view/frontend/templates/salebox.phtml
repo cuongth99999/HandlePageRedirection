@@ -3,6 +3,7 @@
  * @var $block \Magenest\HandlePageRedirection\Block\Sale\SaleBox
  */
 $jsonDataProduct = $block->getProductSaleOffJsonData();
+$listProduct = json_decode($jsonDataProduct, true);
 ?>
 <button id="sale-button" style="float: right; margin: 0 20px">SALE</button>
 
@@ -10,55 +11,17 @@ $jsonDataProduct = $block->getProductSaleOffJsonData();
     <div>
         <!-- Grid sản phẩm -->
         <div class="grid-container">
-            <div class="sale-product">
-                <a href="#" class="product-link">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpm0AXv9uGZD7IQKGrI10kmGPXytkQxo_t_gWCJvbt6QFL9VcWHCBnLT3sF2OXrv6xme4&usqp=CAU" alt="Product 1">
-                    <div class="product-name">Product 1</div>
-                </a>
-            </div>
-            <div class="sale-product">
-                <a href="#" class="product-link">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpm0AXv9uGZD7IQKGrI10kmGPXytkQxo_t_gWCJvbt6QFL9VcWHCBnLT3sF2OXrv6xme4&usqp=CAU" alt="Product 2">
-                    <div class="product-name">Product 2</div>
-                </a>
-            </div>
-            <div class="sale-product">
-                <a href="#" class="product-link">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpm0AXv9uGZD7IQKGrI10kmGPXytkQxo_t_gWCJvbt6QFL9VcWHCBnLT3sF2OXrv6xme4&usqp=CAU" alt="Product 1">
-                    <div class="product-name">Product 1</div>
-                </a>
-            </div>
-            <div class="sale-product">
-                <a href="#" class="product-link">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpm0AXv9uGZD7IQKGrI10kmGPXytkQxo_t_gWCJvbt6QFL9VcWHCBnLT3sF2OXrv6xme4&usqp=CAU" alt="Product 2">
-                    <div class="product-name">Product 2</div>
-                </a>
-            </div>
-            <div class="sale-product">
-                <a href="#" class="product-link">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpm0AXv9uGZD7IQKGrI10kmGPXytkQxo_t_gWCJvbt6QFL9VcWHCBnLT3sF2OXrv6xme4&usqp=CAU" alt="Product 1">
-                    <div class="product-name">Product 1</div>
-                </a>
-            </div>
-            <div class="sale-product">
-                <a href="#" class="product-link">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpm0AXv9uGZD7IQKGrI10kmGPXytkQxo_t_gWCJvbt6QFL9VcWHCBnLT3sF2OXrv6xme4&usqp=CAU" alt="Product 2">
-                    <div class="product-name">Product 2</div>
-                </a>
-            </div>
-            <div class="sale-product">
-                <a href="#" class="product-link">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpm0AXv9uGZD7IQKGrI10kmGPXytkQxo_t_gWCJvbt6QFL9VcWHCBnLT3sF2OXrv6xme4&usqp=CAU" alt="Product 1">
-                    <div class="product-name">Product 1</div>
-                </a>
-            </div>
-            <div class="sale-product">
-                <a href="#" class="product-link">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpm0AXv9uGZD7IQKGrI10kmGPXytkQxo_t_gWCJvbt6QFL9VcWHCBnLT3sF2OXrv6xme4&usqp=CAU" alt="Product 1">
-                    <div class="product-name">Product 1</div>
-                </a>
-            </div>
-            <!-- Thêm sản phẩm khác tương tự -->
+            <?php
+                if (!empty($listProduct)):
+                    foreach ($listProduct as $product):
+            ?>
+                <div class="sale-product">
+                    <a href="<?= $product['url']; ?>" class="product-link">
+                        <img src="<?= $product['image']; ?>" alt="<?= $product['name']; ?>">
+                        <div class="product-name"><?= $product['name']; ?></div>
+                    </a>
+                </div>
+            <?php endforeach; endif; ?>
         </div>
     </div>
 </div>
